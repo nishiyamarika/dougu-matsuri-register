@@ -367,6 +367,47 @@ body{font-size:18px}
 .pk .plus:active{background:var(--accent)}
 .pk .w2{grid-column:span 2}
 .plushint{font-family:var(--f-num);font-size:30px;color:var(--fg)}
+/* 読みやすさ：灰色をやめて黒、文字を大きく */
+:root{--muted:#1a1a1a}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--muted:#eeeeec}}
+:root[data-theme="dark"]{--muted:#eeeeec}
+input::placeholder{color:#555!important}
+body{font-size:19px}
+.brand small{font-size:13px}
+nav button{font-size:16px}
+.albl{font-size:16px;font-weight:700}
+.av{font-size:44px}
+.tolist{font-size:15px;font-weight:700;padding:8px 10px;border-width:2px}
+.kind button{font-size:18px;font-weight:700;padding:11px 4px}
+.hint{font-size:20px;font-weight:500}
+.row.r2 .cd{font-size:26px!important}
+.nm2{font-size:15px!important;font-weight:500;color:var(--fg)!important}
+.row.r2 .pr{font-size:26px!important}
+.row.r2 .pr small,.row .pr small{font-size:13px!important;color:var(--fg)}
+.pk button{font-size:28px}
+.pk .fn{font-size:24px;font-weight:700}
+.bar .n,.cartb span{font-size:15px;opacity:1}
+.bar .in.two .bk{font-weight:700;opacity:1;font-size:18px;background:color-mix(in srgb,var(--onfg) 14%,transparent)}
+.bar .in.two button{font-size:18px}
+.backbtn{border:2px solid var(--fg);background:var(--surface);color:var(--fg);font-size:18px;font-weight:700;padding:12px 14px;letter-spacing:.06em;text-align:left}
+.backbtn.wide{width:100%}
+#toPrice{margin:12px 0 4px}
+.mtotal span{font-size:16px;font-weight:700}
+.mlab{font-size:15px;font-weight:700}
+.mpays button{font-size:19px;font-weight:700}
+.keys button{font-size:26px}
+.keys .fn{font-size:22px;font-weight:700}
+.keys .exact{font-size:22px!important;font-weight:700;color:var(--fg)!important;letter-spacing:.1em}
+.chg span{font-size:17px;font-weight:700}
+.otx{font-size:17px;font-weight:700}.onm{font-size:15px!important}
+.bigsub{font-size:16px}
+.done-sum dt{font-size:17px}
+.cart-h b{font-size:20px}.cart-sum span{font-size:17px;font-weight:700}
+.tiny,p.tiny{font-size:15px}
+.kpi span{font-size:14px}th{font-size:14px}table{font-size:15px}
+nav button{white-space:nowrap;padding:0 8px;font-size:16px}
+.keys .exact{font-size:19px!important;letter-spacing:0!important;white-space:nowrap;padding:0}
+@media (max-width:360px){.keys .exact{font-size:16px!important}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 
@@ -389,14 +430,14 @@ body{font-size:18px}
   <div class="kind" id="kind"><button data-kd="all" aria-pressed="true">すべて</button><button data-kd="wan" aria-pressed="false">椀・器</button><button data-kd="cut" aria-pressed="false">カトラリー</button></div>
   <div class="res" id="res"></div>
   <div class="pk" id="pkeys">
-    <button>7</button><button>8</button><button>9</button><button class="fn" data-k="bs">⌫</button>
-    <button>4</button><button>5</button><button>6</button><button class="fn" data-k="clr">C</button>
+    <button>7</button><button>8</button><button>9</button><button class="fn" data-k="bs" aria-label="1字消す">C</button>
+    <button>4</button><button>5</button><button>6</button><button class="fn" data-k="clr" aria-label="全部消す">AC</button>
     <button>1</button><button>2</button><button>3</button><button class="plus" data-k="plus" aria-label="次の商品へ">＋</button>
     <button class="w2">0</button><button>00</button>
   </div>
 </div>
 <div id="listPane" hidden>
-  <button class="back" id="toPrice">← 金額で探す</button>
+  <button class="backbtn" id="toPrice">← 金額で探す</button>
   <div class="sticky2">
     <div class="srch"><input id="q" inputmode="numeric" autocomplete="off" placeholder="値札の番号で探す（数字だけ）" aria-label="値札の番号で探す"><button id="qClr" hidden>×</button></div>
     <div id="browse">
@@ -492,7 +533,7 @@ body{font-size:18px}
   <div class="cart-btns"><button class="ghost" id="cartClear">すべて取り消す</button><button class="primary" id="cartClose">閉じる</button></div>
 </div></div>
 <div class="modal" id="payModal" hidden><div class="sheet" role="dialog" aria-label="決済">
-  <button class="ghost wide" id="payBack">← 戻る（お客様向け画面へ）</button>
+  <button class="backbtn wide" id="payBack">← 戻る</button>
   <div class="mtotal"><span>お会計（税込）</span><b id="mTotal">¥0</b></div>
   <div class="mlab">お客様に伺った決済方法を選択</div>
   <div class="mpays" id="pays">
@@ -503,8 +544,8 @@ body{font-size:18px}
     <div class="mlab">お預かり金額（テンキー入力）</div>
     <div class="recv" id="recv">&nbsp;</div>
     <div class="keys" id="keys">
-      <button>7</button><button>8</button><button>9</button><button class="fn" data-k="bs">1字消す</button>
-      <button>4</button><button>5</button><button>6</button><button class="fn" data-k="clr">クリア</button>
+      <button>7</button><button>8</button><button>9</button><button class="fn" data-k="bs" aria-label="1字消す">C</button>
+      <button>4</button><button>5</button><button>6</button><button class="fn" data-k="clr" aria-label="全部消す">AC</button>
       <button>1</button><button>2</button><button>3</button><button class="fn exact" data-k="exact">ちょうど</button>
       <button class="w2">0</button><button>00</button>
     </div>
